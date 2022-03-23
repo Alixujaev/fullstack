@@ -26,8 +26,13 @@ router.post("/login", async (req, res) => {
     const candidate = await User.findOne({ email });
 
     if (candidate) {
-      const samePas = bcrypt.compare(password, candidate.password);
-      if (samePas) {
+      const samePas = bcrypt.compareSync(password, candidate.password);
+      // const samePas = password === candidate.password;
+      console.log(samePas);
+      if (!samePas) {
+        req.flash("loginError", "Password wrong");
+        res.redirect("/auth/login#login");
+      }else{
         req.session.user = candidate;
         req.session.isAuthenticated = true;
         req.session.save((err) => {
@@ -35,9 +40,6 @@ router.post("/login", async (req, res) => {
 
           res.redirect("/");
         });
-      }else {
-        req.flash("loginError", "Password wrong");
-        res.redirect("/auth/login#login");
       }
     } else {
       req.flash("loginError", "Password wrong");
@@ -59,7 +61,7 @@ router.post("/register", registerValidators, async (req, res) => {
       return res.status(422).redirect("/auth/login#register");
     }
 
-    const hashPass = await bcrypt.hash(password, 10);
+    const hashPass = await bcrypt.hashSync(password, 10);
     const user = new User({
       email: email,
       name: name,
