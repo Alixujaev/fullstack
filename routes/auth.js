@@ -23,11 +23,10 @@ router.get("/logout", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    const newEmail = email.toLowerCase()
-    const candidate = await User.findOne({ newEmail });
+    const candidate = await User.findOne({ email });
 
     if (candidate) {
-      console.log(candidate);
+      console.log(email);
       const samePas = bcrypt.compareSync(password, candidate.password);
       // const samePas = password === candidate.password;
       console.log(samePas);
