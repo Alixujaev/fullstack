@@ -1,7 +1,44 @@
 <div class="notebook">
-  <h1>{{notebook.title}}</h1>
 
+  {{!-- <h1>{{notebook.title}}</h1>
   <img src="{{notebook.img}}" alt="{{notebook.title}}" />
   <p>{{notebook.descr}}</p>
-  <p class="price big">{{notebook.price}}</p>
+  <p class="price big">{{notebook.price}}</p> --}}
+
+<div class="card_one">
+  <div class="thumbnail">
+    <img class="left" src="{{notebook.img}}" alt="{{notebook.title}}"/>
+  </div>
+  <div class="right_one">
+    <h1>
+      {{notebook.title}}
+    </h1>
+    <div class="author">
+      <h2>
+        {{notebook.price}}$
+      </h2>
+    </div>
+    <div class="separator"></div>
+    <p>
+      {{notebook.descr}}
+    </p>
+  </div>
+  <ul>
+    <li>
+      <i class="fa fa-eye fa-2x"></i>
+    </li>
+    <li>
+      <i class="fa fa-heart-o fa-2x"></i>
+    </li>
+    <li>
+      <i class="fa fa-envelope-o fa-2x"></i>
+    </li>
+    <li>
+      <i class="fa fa-share-alt fa-2x"></i>
+    </li>
+  </ul>
+  <div class="fab">
+    <i class="fa fa-arrow-down fa-3x"></i>
+  </div>
+</div>
 </div>
